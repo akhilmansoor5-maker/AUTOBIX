@@ -15,7 +15,7 @@ export const site = {
   description:
     "AUTOBIX AUTO CARE in Theyyala, Nannambra is a full-service car care destination — washing, detailing and polishing, ceramic and graphene coating, paint protection film, cooling film, wheel alignment and premium accessories. With a coffee shop and salon on site, waiting is part of the experience.",
 
-  url: "https://autobixautocare.com",
+  url: "https://akhilmansoor5-maker.github.io/AUTOBIX",
 
   address: {
     street: "Theyyala, Theyyalingal",

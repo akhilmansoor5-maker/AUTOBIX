@@ -72,8 +72,8 @@ export const metadata: Metadata = {
     images: ["/images/generated/hero.webp"],
   },
   icons: {
-    icon: "/brand/autobix-icon.png",
-    apple: "/brand/autobix-icon.png",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/autobix-icon.png`,
+    apple: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/autobix-icon.png`,
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
