@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { assetSrc } from "@/lib/asset-src";
 import { imgMeta } from "@/lib/img";
 
 type Props = {
@@ -32,7 +33,7 @@ export function Img({
   if (cover) {
     return (
       <Image
-        src={src}
+        src={assetSrc(src)}
         alt={alt}
         fill
         sizes={sizes}
@@ -47,7 +48,7 @@ export function Img({
 
   return (
     <Image
-      src={src}
+      src={assetSrc(src)}
       alt={alt}
       width={meta?.width ?? 1600}
       height={meta?.height ?? 1200}

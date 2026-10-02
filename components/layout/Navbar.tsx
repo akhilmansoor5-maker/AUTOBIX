@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
+import { assetSrc } from "@/lib/asset-src";
 import { navLinks, site, telHref, waHref } from "@/lib/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -38,7 +39,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
           >
             <Image
-              src="/brand/autobix-logo.png"
+              src={assetSrc("/brand/autobix-logo.png")}
               alt={site.name}
               width={1960}
               height={486}

@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 /**
- * Project sites are served from /<repo>/. GITHUB_PAGES is set by the deploy
- * workflow; local `next dev` stays at the root so the existing URLs keep working.
+ * Project sites are served from /<repo>/. Set GITHUB_PAGES=true for that build.
+ * Local `next dev` stays at the root so the existing URLs keep working.
  */
 const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
 const basePath = process.env.GITHUB_PAGES === "true" && repo ? `/${repo}` : "";
@@ -20,10 +20,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
-  // The image optimizer needs a server. The loader just prefixes the Pages path.
+  // The image optimizer needs a server. Pages has none, so ship the files as-is.
   images: {
-    loader: "custom",
-    loaderFile: "./lib/image-loader.ts",
+    unoptimized: true,
   },
 };
 

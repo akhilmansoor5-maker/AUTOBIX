@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { assetSrc } from "@/lib/asset-src";
 import { navLinks, site, telHref, waHref } from "@/lib/site";
 
 const serviceLinks = [
@@ -30,7 +31,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr] lg:gap-8">
           <div>
             <Image
-              src="/brand/autobix-logo.png"
+              src={assetSrc("/brand/autobix-logo.png")}
               alt={site.name}
               width={1960}
               height={486}
