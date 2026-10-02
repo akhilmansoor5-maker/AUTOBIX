@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * AUTOBIX AUTO CARE — design tokens
+ * Palette sampled directly from the illuminated signage/logo:
+ * #fc0101 (the "O" + X notch) and #fd6f21 (the "AUTO CARE" glow).
+ * ------------------------------------------------------------------ */
+:root {
+  --ab-void: #000000;
+  --ab-black: #050506;
+  --ab-coal: #0a0a0c;
+  --ab-graphite: #121215;
+  --ab-steel: #1c1c21;
+  --ab-smoke: #2a2a31;
+
+  --ab-white: #f7f7f9;
+  --ab-chrome: #d6d6dd;
+  --ab-muted: #8e8e99;
+  --ab-dim: #5d5d68;
+
+  --ab-red: #fc0101;
+  --ab-red-deep: #c20000;
+  --ab-ember: #fd6f21;
+  --ab-amber: #ffb020;
+
+  --ab-line: rgba(255, 255, 255, 0.09);
+  --ab-line-strong: rgba(255, 255, 255, 0.16);
+  --ab-glow: rgba(252, 1, 1, 0.3);
+  --ab-ember-glow: rgba(253, 111, 33, 0.26);
+
+  --ab-signature: linear-gradient(96deg, var(--ab-red) 0%, var(--ab-ember) 72%, var(--ab-amber) 100%);
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --nav-h: 4rem;
+  --dock-h: 4.5rem;
+}
+
+@theme inline {
+  --color-void: var(--ab-void);
+  --color-black: var(--ab-black);
+  --color-coal: var(--ab-coal);
+  --color-graphite: var(--ab-graphite);
+  --color-steel: var(--ab-steel);
+  --color-smoke: var(--ab-smoke);
+
+  --color-chrome: var(--ab-chrome);
+  --color-muted: var(--ab-muted);
+  --color-dim: var(--ab-dim);
+
+  --color-red: var(--ab-red);
+  --color-red-deep: var(--ab-red-deep);
+  --color-ember: var(--ab-ember);
+  --color-amber: var(--ab-amber);
+
+  --color-line: var(--ab-line);
+  --color-line-strong: var(--ab-line-strong);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-archivo);
+  --font-mono: var(--font-jet);
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  background: var(--ab-void);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ab-white);
+  background: var(--ab-black);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis owns the scroll once mounted. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--ab-red);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ab-ember);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Thin dark scrollbar so the black canvas stays uninterrupted. */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ab-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ab-steel);
+    border-radius: 99px;
+    border: 3px solid var(--ab-void);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ab-red-deep);
+  }
+}
+
+@layer utilities {
+  /* Technical label: mono, tiny, widely tracked. */
+  .ab-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 1024px) {
+    .ab-kicker {
+      font-size: 0.6875rem;
+    }
+  }
+
+  /* Headline: wide grotesque, tight tracking, uppercase. */
+  .ab-display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+  }
+
+  .ab-display-tight {
+    font-family: var(--font-display);
+    font-weight: 900;
+    line-height: 0.84;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  .ab-copy {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--ab-muted);
+  }
+
+  @media (min-width: 1024px) {
+    .ab-copy {
+      font-size: 1rem;
+    }
+  }
+
+  /* The logo's red→ember→amber sweep, as text or as a surface. */
+  .ab-gradient-text {
+    background: var(--ab-signature);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ab-gradient-surface {
+    background: var(--ab-signature);
+  }
+
+  /* Hairline rule that fades out, used between sections. */
+  .ab-rule {
+    height: 1px;
+    background: linear-gradient(90deg, var(--ab-line-strong), transparent);
+  }
+
+  .ab-glow-red {
+    box-shadow: 0 0 0 1px rgba(252, 1, 1, 0.5), 0 14px 46px -10px var(--ab-glow);
+  }
+
+  .ab-glow-ember {
+    box-shadow: 0 0 0 1px rgba(253, 111, 33, 0.45), 0 14px 46px -10px var(--ab-ember-glow);
+  }
+
+  /* Subtle film grain — keeps large black areas from banding. */
+  .ab-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Horizontal snap rail used for every mobile carousel. */
+  .ab-rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+  }
+  .ab-rail::-webkit-scrollbar {
+    display: none;
+  }
+  .ab-rail > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+
+  .ab-marquee {
+    animation: ab-scroll 38s linear infinite;
+  }
+
+  .ab-screen {
+    min-height: calc(100svh - var(--nav-h) - var(--safe-top));
+  }
+}
+
+@keyframes ab-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ab-marquee {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
