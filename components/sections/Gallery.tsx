@@ -7,11 +7,28 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { gallery } from "@/lib/site";
 
-const spanClass: Record<string, string> = {
-  wide: "lg:col-span-2 lg:row-span-1 aspect-[16/10]",
-  tall: "lg:col-span-1 lg:row-span-2 aspect-[4/5] lg:aspect-auto",
-  normal: "aspect-square",
+/**
+ * Desktop tilings that pack with no holes. Each pattern repeats and fills
+ * whole rows, so the grid never ends with an empty cell.
+ */
+const TILINGS: Record<number, { cols: string; pattern: string[] }> = {
+  4: {
+    cols: "grid-cols-4",
+    pattern: ["col-span-2 row-span-2", "col-span-2", "col-span-1", "col-span-1"],
+  },
+  6: {
+    cols: "grid-cols-3",
+    pattern: ["col-span-2 row-span-2", "col-span-1", "col-span-1"],
+  },
+  8: {
+    cols: "grid-cols-4",
+    pattern: ["col-span-2 row-span-2", "col-span-2", "col-span-1", "col-span-1"],
+  },
 };
+
+function tilingFor(count: number) {
+  return TILINGS[count] ?? { cols: "grid-cols-3", pattern: ["col-span-1"] };
+}
 
 /**
  * Real photographs of the centre, in an asymmetric masonry grid on desktop
@@ -27,6 +44,7 @@ export function Gallery({
   heading?: string;
 }) {
   const items = limit ? gallery.slice(0, limit) : gallery;
+  const tiling = tilingFor(items.length);
 
   return (
     <section className="relative bg-coal py-16 lg:py-24">
@@ -77,13 +95,13 @@ export function Gallery({
 
       {/* Desktop masonry */}
       <Container className="mt-11 hidden lg:block">
-        <div className="grid auto-rows-[16.5rem] grid-cols-4 gap-4">
-          {items.map((item) => (
+        <div className={cn("grid auto-rows-[16.5rem] gap-4", tiling.cols)}>
+          {items.map((item, i) => (
             <Reveal
               key={item.src}
               className={cn(
                 "group relative overflow-hidden rounded-sm border border-line",
-                spanClass[item.span],
+                tiling.pattern[i % tiling.pattern.length],
               )}
             >
               <Img

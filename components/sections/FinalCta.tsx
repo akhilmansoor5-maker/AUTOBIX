@@ -51,13 +51,17 @@ export function FinalCta({
 
   return (
     <section className="ab-grain relative isolate overflow-hidden border-t border-line bg-void">
-      <div className="absolute inset-0 -z-10 opacity-45">
-        <Img src={image} alt={imageAlt} sizes="100vw" objectPosition="center 45%" />
+      <div className="absolute inset-0 -z-10 opacity-40">
+        <Img src={image} alt={imageAlt} sizes="100vw" objectPosition="center 35%" />
       </div>
-      <div aria-hidden className="absolute inset-0 -z-10 bg-black/60" />
+      {/* Weighted to the bottom so the signage never competes with the hours strip. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_10%_110%,rgba(252,1,1,0.28),transparent_55%)]"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-black/85 to-black/55"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_10%_110%,rgba(252,1,1,0.26),transparent_55%)]"
       />
 
       <Container className="relative py-16 lg:py-24">

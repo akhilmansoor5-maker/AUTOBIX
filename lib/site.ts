@@ -411,7 +411,7 @@ export const process = [
 /* ------------------------------------------------------------------ */
 
 export const stats = [
-  { value: 9, suffix: "", label: "Services under one roof" },
+  { value: services.length, suffix: "", label: "Services under one roof" },
   { value: 7, suffix: "", label: "Days open every week" },
   { value: 11, suffix: "hrs", label: "Open Monday to Saturday" },
   { value: 100, suffix: "%", label: "Work checked before handover" },

@@ -37,7 +37,7 @@ npx tsc --noEmit
 | Route | Purpose |
 | --- | --- |
 | `/` | Home — hero, pillars, paint-correction proof, amenities, process, gallery |
-| `/services` | Full catalogue of nine services, grouped into four pillars |
+| `/services` | Full catalogue of ten services, grouped into four pillars |
 | `/studio` | The Centre — facility, amenities, gallery |
 | `/contact` | Visit & contact — address, phones, hours, map |
 
@@ -79,6 +79,21 @@ node scripts/import-generated.mjs   # convert art-direction stills to WebP + blu
 
 Each writes dimensions and blur placeholders into `lib/image-manifest.json`, which
 `lib/img.ts` reads so no image ever causes layout shift.
+
+## Visual QA
+
+Two Playwright harnesses check layout against a running dev server. Chromium needs
+installing once with `npx playwright install chromium`.
+
+```bash
+npm run qa          # full-page shots + reports invisible headings, dead padding,
+                    # content under the fixed header, horizontal overflow, console errors
+npm run qa:scroll   # viewport-by-viewport frames, which is the only reliable way to
+                    # review the pinned Pillars section and the fixed header
+```
+
+Both run every route at 1440×900 and 390×844 and write to `.preview/` (git-ignored).
+Pass a route and viewport to narrow a run, e.g. `npm run qa:scroll -- home mobile`.
 
 ## Design tokens
 

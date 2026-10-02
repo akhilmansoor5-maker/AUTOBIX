@@ -17,7 +17,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         kicker="Everything we do"
-        title={"Nine services,\none address."}
+        title={"Ten services,\none address."}
         body="From a weekly wash to a multi-day coating job. Every service below is carried out in house at Theyyala — nothing gets sent elsewhere."
         image="/images/generated/bodykit.webp"
         imageAlt="A car fitted with a body kit inside the AUTOBIX workshop"

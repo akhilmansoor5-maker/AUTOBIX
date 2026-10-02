@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="ab-grain relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-void pb-14 pt-[calc(var(--nav-h)+var(--safe-top)+1.5rem)] lg:justify-center lg:pb-24 lg:pt-[calc(var(--nav-h)+4rem)]"
+      className="ab-grain relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-void pb-[calc(var(--dock-h)+1.75rem)] pt-[calc(var(--nav-h)+var(--safe-top)+1.5rem)] lg:justify-center lg:pb-24 lg:pt-[calc(var(--nav-h)+4rem)]"
     >
       <motion.div
         className="absolute inset-0 -z-10"
@@ -38,14 +38,14 @@ export function Hero() {
           alt="A detailed SUV under the lights in the AUTOBIX AUTO CARE bay"
           priority
           sizes="100vw"
-          objectPosition="62% 50%"
+          objectPosition="70% 42%"
         />
       </motion.div>
 
       {/* Grading stack: darken for contrast, then warm the lower left. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/70 to-black/35 lg:bg-gradient-to-r lg:from-black lg:via-black/75 lg:to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/60 to-black/15 lg:bg-gradient-to-r lg:from-black lg:via-black/75 lg:to-transparent"
       />
       <div
         aria-hidden
@@ -65,7 +65,8 @@ export function Hero() {
         >
           <span className="ab-gradient-surface size-1.5 rotate-45" aria-hidden />
           <p className="ab-kicker text-white/70">
-            Theyyala, Nannambra · Open today till 7:30 pm
+            Theyyala, Nannambra
+            <span className="hidden sm:inline"> · Open today till 7:30 pm</span>
           </p>
         </motion.div>
 
