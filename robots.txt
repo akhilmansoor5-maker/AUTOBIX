@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://akhilmansoor5-maker.github.io/AUTOBIX
+Sitemap: https://akhilmansoor5-maker.github.io/AUTOBIX/sitemap.xml
